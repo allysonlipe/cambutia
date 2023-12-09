@@ -1,0 +1,276 @@
+/*reset na pagina*/
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* Estilo para o corpo da página */
+body {
+  background-color: #fff;
+  /* Cor de fundo branca */
+  color: #333;
+  /* Cor do texto preto */
+}
+
+/* Estilo para a barra de navegação */
+ul.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f7b731;
+  /* Cor de fundo laranja pastel */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+li.nav-item {
+  float: left;
+}
+
+li.nav-item a {
+  display: block;
+  color: #333;
+  /* Cor do texto preto */
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.nav-item a:hover {
+  background-color: #ddd;
+  /* Cor de fundo cinza claro ao passar o mouse */
+  color: #333;
+  /* Cor do texto preto */
+}
+
+/* Estilo para o formulário de cadastro */
+form {
+  display: flex;
+  flex-wrap: initial;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  /* Cor de fundo branca */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  /* Cor do texto preto */
+}
+
+label {
+  width: auto;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+  /* Cor do texto preto */
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  /* Cor da borda cinza */
+  border-radius: 3px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  /* Cor da borda cinza */
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  box-shadow: inset 0px 1px 0px 0px #fff6af;
+  background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+  background-color: #ffec64;
+  border-radius: 6px;
+  border: 1px solid #ffaa22;
+  display: inline-block;
+  cursor: pointer;
+  color: #333333;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffee66;
+  width: 100%;
+}
+
+input[type="submit"]:hover {
+  background: linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+  background-color: #ffab23;
+}
+
+input[type="submit"]:active {
+  position: relative;
+  top: 1px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 1em;
+  /* Tamanho da fonte para campos de entrada de texto e textarea */
+}
+
+#divComanda {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  align-items: center;
+  justify-content: center;
+}
+
+#criarComanda,
+.submitButton {
+  width: 30%;
+  height: 50%;
+}
+
+#adicionarProduto,
+#criarComanda {
+  box-shadow: inset 0px 1px 0px 0px #fff6af;
+  background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+  background-color: #ffec64;
+  border-radius: 6px;
+  border: 1px solid #ffaa22;
+  display: inline-block;
+  cursor: pointer;
+  color: #333333;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 24px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #ffee66;
+  width: 100%;
+}
+
+#adicionarProduto:hover,
+#criarComanda:hover,
+.submitButton:hover {
+  background: linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+  background-color: #ffab23;
+}
+
+#adicionarProduto:active,
+#criarComanda:active,
+.submitButton:active {
+  position: relative;
+  top: 1px;
+}
+
+#horaEntrega {
+  width: 10vw;
+  padding: 5px;
+  font-size: 2.6vh;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  /* text-align: center; */
+  font-family: monospace;
+  text-align: center;
+}
+
+
+#produtos,
+.campo-produto-quantidade {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+input.produto.ui-autocomplete-input,
+.produto {
+  max-width: 50%;
+}
+
+input.qtdProd {
+  max-width: 20%;
+}
+
+
+
+.qtdProd::-webkit-inner-spin-button{
+  display: none;
+}
+
+#data {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#data input {
+  text-align: center;
+  max-width: 50%;
+  font-size: 2.5vh;
+  font-family: monospace;
+}
+
+#data label {
+  text-align: left;
+}
+
+#time {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#time label {
+  max-width: 30%;
+}
+
+.custom-time input[type="time"]:focus::-webkit-datetime-edit-hour-field,
+.custom-time input[type="time"]:focus::-webkit-datetime-edit-minute-field {
+  background-color: transparent;
+}
+
+/* Esconda a seta de seleção da hora */
+.custom-time input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+input[type=time]::-webkit-clear-button,
+input[type=time]::-webkit-outer-spin-button,
+input[type=time]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input:not( :focus) {
+  color: transparent;
+}
+
+input:valid {
+  color: inherit;
+}

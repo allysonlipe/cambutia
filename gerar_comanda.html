@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMANDA - CAMBUTIÁ</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<body>
+    <div id="mensagem"></div>
+    <!-- Barra de navegação -->
+    <ul class="navbar">
+        <li class="nav-item"><a href="index.html">Home</a></li>
+        <li class="nav-item"><a href="cadastro_cliente.html">Cadastrar Cliente</a></li>
+        <li class="nav-item"><a href="cadastro_produto.html">Cadastrar Produto</a></li>
+        <li class="nav-item"><a href="gerar_comanda.html">Criar Comanda</a></li>
+        <li class="nav-item"><a href="comandas_anteriores.php">Comandas Anteriores</a></li>
+    </ul>
+
+    <form action="processar_pedido.php" method="POST" id="formulario" target="_blank">
+        <label for="nomeCliente">Nome do Cliente:</label>
+        <input type="text" id="nomeCliente" name="nomeCliente" required>
+        <br>
+        <div id="data">
+            <label for="dataEntrega">Insira uma data (DD-MM-AAAA):</label>
+            <input type="text" id="dataEntrega" name="dataEntrega" pattern="\d{2}-\d{2}-\d{4}">
+        </div>
+        <div id="time">
+            <label for="horaEntrega">Horário da entrega:</label>
+            <div class="custom-time">
+                <input type="time" id="horaEntrega" name="horaEntrega" required>
+            </div>
+        </div>
+        <br>
+        <div id="end">
+            <label for="endEntrega">Endereço:</label>
+            <input type="text" id="endEntrega" name="endEntrega" required>
+        </div>
+        <br>
+        <div id="produtos">
+            <label for="nomeProduto1">Produto:</label>
+            <input type="text" class="produto" name="nomeProduto1" required>
+            <label for="qtdProd">Quantidade:</label>
+            <input type="number" class="qtdProd" name="qtdProd1" required>
+            <br>
+        </div>
+        <div id="pagamento">
+            <label for="pagamento">Forma de Pagamento:</label>
+            <input type="text" class="pagamento" name="pagamento" required>
+            <br>
+        </div>
+        <button type="button" id="adicionarProduto">Adicionar Produto</button>
+        <div id="divComanda">
+            <input id="criarComanda" class="submitButton" type="submit" value="Criar Comanda">
+        </div>
+    </form>
+    <!-- Scrip para dados -->
+    <script>
+        $(document).ready(function () {
+            $("#nomeCliente").autocomplete({
+                source: 'processar_pesquisa_nome_cliente.php'
+            });
+
+            function aplicarAutocomplete() {
+                $(".produto").autocomplete({
+                    source: 'processar_pesquisa_nome_produto.php'
+                });
+            }
+
+            aplicarAutocomplete(); // Aplicar o autocomplete aos campos existentes
+
+            var contador = 2;
+
+            // Evento de clique para adicionar um novo campo de produto acima do botão
+            $("#adicionarProduto").click(function () {
+                var novoConjunto = $('<div class="campo-produto-quantidade">');
+
+                var novoCampoProduto = '<label for="nomeProduto' + contador + '">Produto:</label>' + '<input type="text" class="produto" name="nomeProduto' + contador + '" required>' + '<br>';
+                novoConjunto.append(novoCampoProduto);
+
+                aplicarAutocomplete(); // Aplicar o autocomplete ao novo campo de produto
+
+                var novoCampoQtd = '<label for="qtdProd' + contador + '">Quantidade:</label>' +
+                    '<input type="number" class="qtdProd" name="qtdProd' + contador + '" required>' +
+                    '<br>';
+                novoConjunto.append(novoCampoQtd);
+
+                $("#produtos").append(novoConjunto);
+                contador++;
+                // Aplicar o autocomplete ao novo campo de produto
+                aplicarAutocomplete();
+            });
+        });    
+    </script>
+    <!-- Script para mascarar a data da entrega -->
+    <script>
+        // Função para obter a data atual no formato DD-MM-AAAA
+        function getDataAtualFormatada() {
+            const dataAtual = new Date();
+            const dia = String(dataAtual.getDate()).padStart(2, '0');
+            const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
+            const ano = dataAtual.getFullYear();
+            return `${dia}-${mes}-${ano}`;
+        }
+
+        // Preenche o campo de entrada com a data atual ao carregar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            const campoData = document.getElementById('dataEntrega');
+            campoData.value = getDataAtualFormatada();
+        });
+
+        // Adicione um ouvinte de evento para o campo de entrada de data
+        document.getElementById('dataEntrega').addEventListener('input', function (e) {
+            // Obtém o valor atual do campo
+            let value = e.target.value;
+
+            // Remove caracteres não numéricos
+            value = value.replace(/\D/g, '');
+
+            // Adiciona a máscara DD-MM-AAAA
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '-' + value.substring(2);
+            }
+            if (value.length > 5) {
+                value = value.substring(0, 5) + '-' + value.substring(5, 9);
+            }
+
+            // Atualiza o valor do campo
+            e.target.value = value;
+        });
+    </script>
+    <!-- cor do input de hora -->
+    <script>
+        $(document).ready(function () {
+            $('#horaEntrega').on('focus', function () {
+                $(this).css('background-color', '#d3d3d3');
+
+            });
+
+            $('#horaEntrega').on('blur', function () {
+                $(this).css('background-color', 'white');
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
